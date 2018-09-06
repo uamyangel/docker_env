@@ -31,14 +31,9 @@ docker build -f ./nginx/nginx_alpine
 ```
 
 ### PHP构建
+1）修改php72.dockerfile相关配置（包版本号等）
 
-1）更新dockerfile，获取最新的官方的dockerfile  （https://hub.docker.com/_/php/ 选择相应的版本： 7.2.9-fpm-alpine3.8 ），clone下来，先构建基础的php镜像
-
-2）下载相关软件包，并修改php7.2_alpine中的路径，以及alpine_php_ext.sh中的版本号
-
-3）执行docker build -f Dockerfile . ，创建基础镜像
-
-4）执行php7.2_alpine，复制相关的软件包，注意修改 3）产生镜像名称
+2）执行docker build -f php72.dockerfile . ，创建基础镜像
 
 ## 关于DEMO
 
