@@ -31,6 +31,7 @@ docker build -f ./nginx/nginx_alpine
 ```
 
 ### PHP构建
+
 1）修改php72.dockerfile相关配置（包版本号等）
 
 2）执行docker build -f php72.dockerfile . ，创建基础镜像
