@@ -20,6 +20,13 @@ PHP：7.2.9
 
 Nginx：1.14
 
+## 直接pull
+
+```sh
+docker pull chenchenchen/alpine3.8_php72_fpm:v2
+docker pull chenchenchen/nginx1.14:v2
+```
+
 ## 流程
 
 ### Nginx构建
