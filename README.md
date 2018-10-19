@@ -1,5 +1,7 @@
 # 用docker搭建统一的开发环境
 
+## 注：环境会偶尔更新（如：php版本，或需要添加扩展等等），版本号会一直增加，无特殊说明，请使用最新版。
+
 ## 下载docker
 
 省略....
@@ -16,14 +18,14 @@ Linux + Nginx + PHP + Redis + Mysql
 
 Linux为：alpine v3.8
 
-PHP：7.2.9
+PHP：7.2.11
 
 Nginx：1.14
 
 ## 直接pull
 
 ```sh
-docker pull chenchenchen/alpine3.8_php72_fpm:v2
+docker pull chenchenchen/alpine3.8_php72_fpm:v3
 docker pull chenchenchen/nginx1.14:v2
 ```
 
