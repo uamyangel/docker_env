@@ -1,4 +1,4 @@
-FROM php:7.2.9-fpm-alpine3.8
+FROM php:7.2.11-fpm-alpine3.8
 
 ENV TIMEZONE Asia/Shanghai
 ENV SOFTDIR /opt/src
@@ -29,6 +29,8 @@ RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.8/main" > /etc/apk/repositories &
     php installer --install-dir=/usr/bin --filename=composer && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ && \
     docker-php-ext-install gd && \
+    docker-php-ext-install pcntl && \
+    pecl install mongodb && \
     echo "gd installed" && sleep 5s && \
     docker-php-ext-install pdo pdo_mysql && \
     docker-php-ext-enable gd phalcon pdo pdo_mysql igbinary redis xdebug && \
