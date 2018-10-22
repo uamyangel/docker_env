@@ -31,6 +31,7 @@ RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.8/main" > /etc/apk/repositories &
     docker-php-ext-install gd && \
     docker-php-ext-install pcntl && \
     pecl install mongodb && \
+    pecl install xxtea && \
     echo "gd installed" && sleep 5s && \
     docker-php-ext-install pdo pdo_mysql && \
     docker-php-ext-enable gd phalcon pdo pdo_mysql igbinary redis xdebug && \
