@@ -32,3 +32,9 @@ networks:
 
 volumes:
     phpsocket:
+#在win下，如果有些类不能直接composer install，那就先走下面的
+#
+#entrypint: [
+#    "composer install",
+#    "php-fpm"
+#]
