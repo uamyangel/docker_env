@@ -16,6 +16,10 @@ Linux + Nginx + PHP + Redis + Mysql
 
 2）Linux + PHP （xdebug , Phalcon , Redis 等扩展） + Composer
 
+3）V3：加上了pcntl和mongodb扩展
+
+4）V4：加上了xxtea扩展
+
 Linux为：alpine v3.8
 
 PHP：7.2.11
@@ -25,7 +29,7 @@ Nginx：1.14
 ## 直接pull
 
 ```sh
-docker pull chenchenchen/alpine3.8_php72_fpm:v3
+docker pull chenchenchen/alpine3.8_php72_fpm:v4
 docker pull chenchenchen/nginx1.14:v2
 ```
 
