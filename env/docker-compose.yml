@@ -14,7 +14,7 @@ services:
         networks:
             - my-network
     php:
-        image: alpine_php-fpm:v1
+        image: chenchenchen/alpine3.8_php72_fpm:v4
         volumes:
             - ../www:/app
             - ./config/php-fpm.conf:/usr/local/etc/php-fpm.conf
@@ -25,6 +25,11 @@ services:
             - "phpsocket:/tmp"
         networks:
             - my-network
+        #在win下，如果有些类不能直接composer install，那就先走下面的
+        #
+        entrypoint:
+            #- "composer install"
+            - "php-fpm"
 
 networks:
     my-network:
@@ -32,9 +37,3 @@ networks:
 
 volumes:
     phpsocket:
-#在win下，如果有些类不能直接composer install，那就先走下面的
-#
-#entrypint: [
-#    "composer install",
-#    "php-fpm"
-#]

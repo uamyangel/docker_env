@@ -52,3 +52,13 @@ docker build -f ./nginx/nginx_alpine
 ## 关于DEMO
 
 env文件夹下面是运行的demo，请注意修改镜像的名称，以及请根据需要加载需要的配置文件
+
+## 进入运行中的容器
+
+很多时候，需要进入运行中的容器查看或修改相关文件
+
+如：在win下某些模块无法composer install，可使用下面方法
+
+docker exec -it 容器名 /bin/sh
+
+cd 需要加载composer的目录 && composer install
