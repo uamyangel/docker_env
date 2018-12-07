@@ -9,12 +9,14 @@ COPY \
 	./redis-4.1.1.tgz \
 	./xdebug-2.6.1.tgz \
     ./xxtea-1.0.11.tgz \
-    ./zip-1.15.4.tgz \
+    ./mongodb-1.5.3.tgz \
+    #./zip-1.15.4.tgz \
 	./php.ini \
 	./installer \
 	${SOFTDIR}/
 
 #RUN echo "http://mirrors.ustc.edu.cn/alpine/v3.8/main" > /etc/apk/repositories && \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.8/main" >> /etc/apk/repositories
 #上面这个包服务器上，有些库没有，如：libzip
 
 #cd ${SOFTDIR} && tar xf ${xxteaVersion}.tgz && cd ${xxteaVersion} && phpize && ./configure && make && make install && \
@@ -31,15 +33,16 @@ RUN    apk update && \
     cd ${SOFTDIR} && tar xf ${igbVersion}.tgz && cd ${igbVersion} && phpize && ./configure && make && make install && \
     cd ${SOFTDIR} && tar xf ${redisVersion}.tgz && cd ${redisVersion} && phpize && ./configure --enable-redis-igbinary=yes --enable-redis-lzf=yes && make && make install && \
     cd ${SOFTDIR} && tar xf ${xdebugVersion}.tgz && cd ${xdebugVersion} && phpize && ./configure && make && make install && \
-    cd ${SOFTDIR} && tar xf ${zipVersion}.tgz && cd ${zipVersion} && phpize && ./configure && make && make install && \
+    #cd ${SOFTDIR} && tar xf ${zipVersion}.tgz && cd ${zipVersion} && phpize && ./configure && make && make install && \
     \
     cd ${SOFTDIR} && \
     php installer --install-dir=/usr/bin --filename=composer && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ && \
     docker-php-ext-install gd && \
     docker-php-ext-install pcntl && \
-    pecl install mongodb && \
-    pecl install xxtea && \
+    docker-php-ext-install zip && \
+    pecl install mongodb-1.5.3.tgz && \
+    pecl install xxtea-1.0.11.tgz && \
     echo "gd installed" && sleep 5s && \
     docker-php-ext-install pdo pdo_mysql && \
     docker-php-ext-enable gd phalcon pdo pdo_mysql igbinary redis xdebug && \
