@@ -2,35 +2,30 @@ version: '2.1'
 
 services:
     web:
-        image: nginx1.14:v1
+        image: chenchenchen/nginx1.14:v2
         ports:
-            - "9091:80"
+            - "80:80"
         volumes:
-            - ../www:/app
+            - ../cl-api:/app
             - ./config/nginx.conf:/etc/nginx/nginx.conf
             - ./config/conf.d/default.conf:/etc/nginx/conf.d/default.conf
-            - ./runtime/nginx:/data/logs/nginx
-            - "phpsocket:/tmp"
-        networks:
-            - my-network
-    php:
-        image: chenchenchen/alpine3.8_php72_fpm:v4
-        volumes:
-            - ../www:/app
-            - ./config/php-fpm.conf:/usr/local/etc/php-fpm.conf
-            - ./config/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
-            - ./config/php-fpm.d/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
-            - ./config/php.ini:/usr/local/etc/php/php.ini
             - ./runtime:/data/logs/
             - "phpsocket:/tmp"
         networks:
             - my-network
-        #在win下，如果有些类不能直接composer install，那就先走下面的
-        #
-        entrypoint:
-            #- "composer install"
-            - "php-fpm"
-
+    php:
+        image: uamyangel/alpine3.8_php72_fpm
+        volumes:
+            - ../cl-api:/app
+#            - ./config/php-fpm.conf:/usr/local/etc/php-fpm.conf
+#            - ./config/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
+#            - ./config/php-fpm.d/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+#            - ./config/php.ini:/usr/local/etc/php/php.ini
+            - ./config/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+            - ./runtime:/data/logs/
+            - "phpsocket:/tmp"
+        networks:
+            - my-network
 networks:
     my-network:
         driver: bridge
