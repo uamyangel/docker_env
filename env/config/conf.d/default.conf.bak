@@ -3,7 +3,7 @@ server {
     server_name manage.cl.com;
     charset utf-8;
     root   /app/public;
-
+    
     access_log  /data/logs/nginx/access.log     main;
 #    error_log   /data/logs/nginx/error_log.log       error;
 
